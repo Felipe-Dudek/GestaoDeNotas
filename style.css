@@ -1,0 +1,42 @@
+.margin-bottom-s{
+    margin-bottom: 15px;
+}
+
+.margin-left{
+    margin-left: -12px;
+}
+
+.margin-right{
+    margin-right: -12px;
+}
+
+.btn-submit{
+    background-color: #6A5ACD;
+    border: 0px;
+    margin-right: -12px;
+    width: 100px;
+    height: 40px;
+}
+
+.btn-submit:hover{
+    background-color: #483D8B;
+}
+
+.margin-xxl{
+    margin: 50px;
+}
+
+.card-prova{
+    padding: 20px;
+    border: 2px groove;
+}
+
+.align-right{
+    float: right;
+}
+
+body {
+    background-color: #4B0082;
+    background-image: linear-gradient(to bottom right, #4B0082, #8A2BE2);
+    color: #FFFFFF;
+}
