@@ -35,8 +35,18 @@
     float: right;
 }
 
+.table-width{
+    width: 90%;
+    display: flex;
+    justify-content: center;
+}
+
 body {
+    min-height: 100%;
     background-color: #4B0082;
     background-image: linear-gradient(to bottom right, #4B0082, #8A2BE2);
     color: #FFFFFF;
+    padding-bottom: 100px;
+    overflow-y: hidden;
+    overflow-x: hidden;
 }
