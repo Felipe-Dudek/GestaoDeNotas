@@ -34,41 +34,48 @@ function populaDadosNaTabela(){
             colunaIntegrada.innerText = dado.integrada1;
             novaLinha.appendChild(colunaIntegrada);
 
-            const colunaProva2 = document.createElement('td');
-            colunaProva2.innerText = dado.Prova2;
-            novaLinha.appendChild(colunaProva2);
-
-            const colunaAep2 = document.createElement('td');
-            colunaAep2.innerText = dado.Aep2;
-            novaLinha.appendChild(colunaAep2);
-            
-            const colunaIntegrada2 = document.createElement('td');
-            colunaIntegrada2.innerText = dado.integrada2;
-            novaLinha.appendChild(colunaIntegrada2);
-
-            const colunamediabimetre1 = document.createElement('td');
-            colunamediabimetre1.innerText = dado.mediabimetre1;
-            novaLinha.appendChild(colunamediabimetre1);
-
-            const colunamediabimetre2 = document.createElement('td');
-            colunamediabimetre2.innerText = dado.mediabimetre2;
-            novaLinha.appendChild(colunamediabimetre2);
-
-            const colunamediatotal = document.createElement('td');
-            colunamediamediatotal.innerText = dado.mediatotal;
-            novaLinha.appendChild(colunamediatotal);
-
-            const colunaaprovado = document.createElement('td');
-            colunaaprovado.innerText = dado.aprovado;
-            novaLinha.appendChild(colunaaprovado);
-
-            const colunareprovado = document.createElement('td');
-            colunareprovado.innerText = dado.reprovado;
-            novaLinha.appendChild(colunareprovado);
-
             idTabela.appendChild(novaLinha);
         });
     }
 }
 
 populaDadosNaTabela()
+table.js
+<!DOCTYPE HTML>
+<Html lang="pt-br">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h2> Tabela teste </h2>
+    <div class="table-width">
+        <table Id="tabela-header" class="table table-striped table-dark">
+            <Thead>
+                <tr>
+                    <th scope="col"> Nome</th>
+                    <th scope="col"> RA</th>
+                    <th scope="col"> Prova 1</th>
+                    <th scope="col"> AEP 1</th>
+                    <th scope="col"> Integrada 1</th>
+                    <th scope="col"> Prova 2</th>
+                    <th scope="col"> AEP 2 </th>
+                    <th scope="col"> Integrada 2 </th>
+                    <th scope="col"> Média Bimestre 1</th>
+                    <th scope="col"> Média Bimestre 2</th>
+                    <th scope="col"> Media Total </th>
+                    <th scope="col"> Situação</th>
+                </tr>
+            </Thead>
+            <tbody id="tabela-body-tchola">
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="app.js"></script>
+    <script src="table.js"></script>
+</body>
