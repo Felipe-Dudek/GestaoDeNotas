@@ -18,7 +18,19 @@
     height: 40px;
 }
 
+.btn-voltar{
+    background-color: #6A5ACD;
+    border: 0px;
+    margin-right: 20px;
+    width: 100px;
+    height: 40px;
+}
+
 .btn-submit:hover{
+    background-color: #483D8B;
+}
+
+.btn-voltar:hover{
     background-color: #483D8B;
 }
 
