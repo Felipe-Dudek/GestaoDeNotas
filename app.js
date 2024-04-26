@@ -16,8 +16,34 @@ function adicionaDadosAluno(){
     const aep2 = document.getElementById("input_aep_2");
     const integrada2 = document.getElementById("input_prova_integrada_2");
 
-    if(parseFloat(prova1.value) >= 0.0 || parseFloat(prova1.value) <= 8.0){
-
+    //verifica se os números estão nos intevalos certo, caso contrário, será dado um alert
+    if((parseFloat(prova1.value) < 0.0 || parseFloat(prova1.value) > 8.0)){
+        alert(`A prova 1 deve estar entre 0.0 e 8.0 pontos. Nota atual: ${prova1.value}`);
+        return "";
+    }
+    if((parseFloat(prova2.value) < 0.0 || parseFloat(prova2.value) > 8.0)){
+        alert(`A prova 2 deve estar entre 0.0 e 8.0 pontos. Nota atual: ${prova2.value}`);
+        return "";
+    }
+    if((parseFloat(aep1.value) < 0.0 || parseFloat(aep1.value) > 1.0)){
+        alert(`A AEP 1 deve estar entre 0.0 e 1.0 pontos. Nota atual: ${aep1.value}`);
+        return "";
+    }
+    if((parseFloat(aep2.value) < 0.0 || parseFloat(aep2.value) > 1.0)){
+        alert(`A AEP 2 deve estar entre 0.0 e 1.0 pontos. Nota atual: ${aep2.value}`);
+        return "";
+    }
+    if((parseFloat(integrada1.value) < 0.0 || parseFloat(integrada1.value) > 1.0)){
+        alert(`A integrada 1 deve estar entre 0.0 e 1.0 pontos. Nota atual: ${integrada1.value}`);
+        return "";
+    }
+    if((parseFloat(integrada2.value) < 0.0 || parseFloat(integrada2.value) > 1.0)){
+        alert(`A integrada 1 deve estar entre 0.0 e 1.0 pontos. Nota atual: ${integrada2.value}`);
+        return "";
+    }
+    //Verifica se o RA está com o tamanho correto
+    if(ra.value.legth != 9){
+        alert("Insira o RA completo (9 Números)");
     }
 
     //cria estrutura de dados com os dados do aluno
@@ -41,21 +67,29 @@ function criaEstruturaDeDados(nome, email, ra, prova1, aep1, integrada1, prova2,
     }
 }
 
-function adicionarEventListenerInputsProvas(input) {
+function adicionarEventListenerInputsProvas(input, isRA = false) {
     const inp = document.getElementById(input);
     inp.addEventListener("input", function(event) {
-        //regex para verificar se a string dos campos númericos estão recebendo só números decimais
+        //regex para verificar se a string dos inputs númericos estão recebendo só números decimais
         let regex = /^(\d+\.?\d*|\.\d+)$/;
         if (!regex.test(inp.value)) {
             inp.value = "";
         }
+
+        if(!IsRA){
+            //verifica se o tamanho do número n ultrapassa 4 caracteres contando com o ponto
+            if(inp.value.length > 4){
+                inp.value = inp.value.substring(0, 4);
+            }
+        }
     });
 }
 
-//adiciona event listener para os inputs das notas
+//adiciona event listener para os inputs das notas e RA
 adicionarEventListenerInputsProvas("input_prova_1");
 adicionarEventListenerInputsProvas("input_aep_1");
 adicionarEventListenerInputsProvas("input_prova_integrada_1");
 adicionarEventListenerInputsProvas("input_prova_2");
 adicionarEventListenerInputsProvas("input_aep_2");
 adicionarEventListenerInputsProvas("input_prova_integrada_2");
+adicionarEventListenerInputsProvas("input_ra", true);
