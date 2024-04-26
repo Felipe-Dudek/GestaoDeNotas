@@ -48,10 +48,10 @@ function adicionaDadosAluno(){
     }
 
     //cria estrutura de dados com os dados do aluno
-    const dadosALuno = criaEstruturaDeDados(nome.value, email.value, ra.value, prova1.value, aep1.value, integrada1.value, prova2.value, aep2.value, integrada2.value)
+    const dadosAluno = criaEstruturaDeDados(nome.value, email.value, ra.value, prova1.value, aep1.value, integrada1.value, prova2.value, aep2.value, integrada2.value);
 
     //armazena os dados no local storage
-    localStorage.setItem('lista_alunos', JSON.stringify(dadosALuno))
+    adicionaAlunoLocalStorage(dadosAluno);
 }
 
 function criaEstruturaDeDados(nome, email, ra, prova1, aep1, integrada1, prova2, aep2, integrada2){
@@ -66,6 +66,25 @@ function criaEstruturaDeDados(nome, email, ra, prova1, aep1, integrada1, prova2,
         aep2: aep2,
         integrada2: integrada2
     }
+}
+
+function adicionaAlunoLocalStorage(Aluno) {
+    const localStorage = window.localStorage;
+    let listaAlunos = [];
+    if (localStorage.getItem('lista_alunos') != null) {
+        listaAlunos = JSON.parse(localStorage.getItem('lista_alunos'));
+    }
+    listaAlunos.push(Aluno);
+    localStorage.setItem('lista_alunos', JSON.stringify(listaAlunos));
+}
+
+function recuperaDados(){
+    const localStorage = window.localStorage;
+    let listaAluno = [];
+    if (localStorage.getItem('lista_alunos') != null) {
+        listaAluno = JSON.parse(localStorage.getItem('lista_alunos'));
+    }
+    return listaAluno;
 }
 
 function adicionarEventListenerInputsProvas(input, isRA = false) {
