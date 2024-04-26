@@ -34,6 +34,38 @@ function populaDadosNaTabela(){
             colunaIntegrada.innerText = dado.integrada1;
             novaLinha.appendChild(colunaIntegrada);
 
+            const colunaProva2 = document.createElement('td');
+            colunaProva2.innerText = dado.Prova2;
+            novaLinha.appendChild(colunaProva2);
+
+            const colunaAep2 = document.createElement('td');
+            colunaAep2.innerText = dado.Aep2;
+            novaLinha.appendChild(colunaAep2);
+            
+            const colunaIntegrada2 = document.createElement('td');
+            colunaIntegrada2.innerText = dado.integrada2;
+            novaLinha.appendChild(colunaIntegrada2);
+
+            const colunamediabimetre1 = document.createElement('td');
+            colunamediabimetre1.innerText = dado.mediabimetre1;
+            novaLinha.appendChild(colunamediabimetre1);
+
+            const colunamediabimetre2 = document.createElement('td');
+            colunamediabimetre2.innerText = dado.mediabimetre2;
+            novaLinha.appendChild(colunamediabimetre2);
+
+            const colunamediatotal = document.createElement('td');
+            colunamediamediatotal.innerText = dado.mediatotal;
+            novaLinha.appendChild(colunamediatotal);
+
+            const colunaaprovado = document.createElement('td');
+            colunaaprovado.innerText = dado.aprovado;
+            novaLinha.appendChild(colunaaprovado);
+
+            const colunareprovado = document.createElement('td');
+            colunareprovado.innerText = dado.reprovado;
+            novaLinha.appendChild(colunareprovado);
+
             idTabela.appendChild(novaLinha);
         });
     }
