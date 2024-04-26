@@ -47,15 +47,20 @@ function adicionaDadosAluno(){
         return ""; 
     }
 
+    const tamanhoTable = recuperaDados();
+
+    let id = tamanhoTable.length++;
+
     //cria estrutura de dados com os dados do aluno
-    const dadosAluno = criaEstruturaDeDados(nome.value, email.value, ra.value, prova1.value, aep1.value, integrada1.value, prova2.value, aep2.value, integrada2.value);
+    const dadosAluno = criaEstruturaDeDados(id, nome.value, email.value, ra.value, prova1.value, aep1.value, integrada1.value, prova2.value, aep2.value, integrada2.value);
 
     //armazena os dados no local storage
     adicionaAlunoLocalStorage(dadosAluno);
 }
 
-function criaEstruturaDeDados(nome, email, ra, prova1, aep1, integrada1, prova2, aep2, integrada2){
+function criaEstruturaDeDados(id, nome, email, ra, prova1, aep1, integrada1, prova2, aep2, integrada2){
     return {
+        id: id,
         nome: nome,
         email: email,
         ra: ra,
