@@ -1,36 +1,72 @@
 <!DOCTYPE HTML>
-<Html lang="pt-br">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  </head>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <h2>Tabela teste</h2>
 
+  <table id="tabela">
+    <thead>
+      <tr>
+        <th>NOME</th>
+        <th>RA</th>
+        <th>Email</th>
+        <th>AEP 1</th>
+        <th>integrada 1</th>
+        <th>prova 1</th>
+        <th>prova 2</th>
+        <th>AEP 2</th>
+        <th>integrada 2</th>
+        <th>media bimestre 1</th>
+        <th>media bimestre 2</th>
+        <th>media total</th>
+        <th>aprovado</th>
+        <th>reprovado</th>
+      </tr>
+    </thead>
+    <tbody id="tabelaCorpo"></tbody>
+  </table>
 
-    <body>
+  <script>
+    function preencherTabela() {
+      var tabelaCorpo = document.getElementById("tabelaCorpo");
+    
+      tabelaCorpo.innerHTML = "";
 
-  <h2> Tabela teste </h2>
+      var dadosArmazenados = JSON.parse(localStorage.getItem("dados"));
 
-      <table Id="tabela">
-         <Thead>
-             <tr>
-               <th> NOME </th>
-               <th> RA </th>
-               <th> Email </th>
-               <th> AEP 1 </th>
-               <th> integrada 1 </th>
-               <th> prova 1 </th>
-               <th> prova 2 </th>
-               <th> AEP 2 </th>
-               <th> integrada 2 </th>
-               <th> media bimestre 1 </th>
-               <th> media bimestre 2 </th>
-               <th> media total </th>
-               <th> aprovado </th>
-               <th> reprovado </th>
-             </tr>
-         </Thead>
+      if (dadosArmazenados && dadosArmazenados.length > 0) {
+        dadosArmazenados.forEach(function(dado) {
+          var linha = document.createElement("tr");
+          linha.innerHTML = `
+            <td>${dado.nome}</td>
+            <td>${dado.ra}</td>
+            <td>${dado.email}</td>
+            <td>${dado.aep1}</td>
+            <td>${dado.integrada1}</td>
+            <td>${dado.prova1}</td>
+            <td>${dado.prova2}</td>
+            <td>${dado.aep2}</td>
+            <td>${dado.integrada2}</td>
+            <td>${dado.mediaBimestre1}</td>
+            <td>${dado.mediaBimestre2}</td>
+            <td>${dado.mediaTotal}</td>
+            <td>${dado.aprovado}</td>
+            <td>${dado.reprovado}</td>
+          `;
+          tabelaCorpo.appendChild(linha);
+        });
+      } else {
 
+        var mensagem = document.createElement("tr");
+        mensagem.innerHTML = "<td colspan='14'>Nenhum dado encontrado.</td>";
+        tabelaCorpo.appendChild(mensagem);
+      }
+    }
 
-
-      
-    </body>
+    window.onload = preencherTabela;
+  </script>
+</body>
+</html>
