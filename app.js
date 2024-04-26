@@ -53,13 +53,9 @@ function adicionarEventListenerInputsProvas(input) {
 }
 
 //adiciona event listener para os inputs das notas
-adicionarEventListener("input_prova_1");
-adicionarEventListener("input_aep_1");
-adicionarEventListener("input_prova_integrada_1");
-adicionarEventListener("input_prova_2");
-adicionarEventListener("input_aep_2");
-adicionarEventListener("input_prova_integrada_2");
-        aep2: aep2,
-        integrada2: integrada2
-    }
-}
+adicionarEventListenerInputsProvas("input_prova_1");
+adicionarEventListenerInputsProvas("input_aep_1");
+adicionarEventListenerInputsProvas("input_prova_integrada_1");
+adicionarEventListenerInputsProvas("input_prova_2");
+adicionarEventListenerInputsProvas("input_aep_2");
+adicionarEventListenerInputsProvas("input_prova_integrada_2");
