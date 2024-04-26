@@ -92,6 +92,34 @@ function recuperaDados(){
     return listaAluno;
 }
 
+function desabilitarInputsSegundoBimestre(){
+    
+    const id = pegaValorURL();
+    if(parseFloat(id.id) == 0){
+        document.getElementById("input_prova_2").disabled = true;
+        document.getElementById("input_aep_2").disabled = true;
+        document.getElementById("input_prova_integrada_2").disabled = true;
+    }
+}
+
+function pegaValorURL(){
+    //pega parametros de Id passados na URL e retorna o valor
+    let query = location.search.slice(1);
+    let partes = query.split('&');
+    let data = {};
+    partes.forEach(function (parte) {
+        let chaveValor = parte.split('=');
+        let chave = chaveValor[0];
+        let valor = chaveValor[1];
+        data[chave] = valor;
+    });
+    return data;
+}
+
+function redirecionarParaTable(){
+    window.location.replace("/main.html");
+}
+
 function adicionarEventListenerInputsProvas(input, isRA = false) {
     const inp = document.getElementById(input);
     inp.addEventListener("input", function(event) {
@@ -118,3 +146,5 @@ adicionarEventListenerInputsProvas("input_prova_2");
 adicionarEventListenerInputsProvas("input_aep_2");
 adicionarEventListenerInputsProvas("input_prova_integrada_2");
 adicionarEventListenerInputsProvas("input_ra", true);
+
+desabilitarInputsSegundoBimestre();
