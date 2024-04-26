@@ -29,44 +29,6 @@
     <tbody id="tabelaCorpo"></tbody>
   </table>
 
-  <script>
-    function preencherTabela() {
-      var tabelaCorpo = document.getElementById("tabelaCorpo");
-    
-      tabelaCorpo.innerHTML = "";
-
-      var dadosArmazenados = JSON.parse(localStorage.getItem("dados"));
-
-      if (dadosArmazenados && dadosArmazenados.length > 0) {
-        dadosArmazenados.forEach(function(dado) {
-          var linha = document.createElement("tr");
-          linha.innerHTML = `
-            <td>${dado.nome}</td>
-            <td>${dado.ra}</td>
-            <td>${dado.email}</td>
-            <td>${dado.aep1}</td>
-            <td>${dado.integrada1}</td>
-            <td>${dado.prova1}</td>
-            <td>${dado.prova2}</td>
-            <td>${dado.aep2}</td>
-            <td>${dado.integrada2}</td>
-            <td>${dado.mediaBimestre1}</td>
-            <td>${dado.mediaBimestre2}</td>
-            <td>${dado.mediaTotal}</td>
-            <td>${dado.aprovado}</td>
-            <td>${dado.reprovado}</td>
-          `;
-          tabelaCorpo.appendChild(linha);
-        });
-      } else {
-
-        var mensagem = document.createElement("tr");
-        mensagem.innerHTML = "<td colspan='14'>Nenhum dado encontrado.</td>";
-        tabelaCorpo.appendChild(mensagem);
-      }
-    }
-
-    window.onload = preencherTabela;
-  </script>
+  
 </body>
 </html>
