@@ -41,6 +41,14 @@
     justify-content: center;
 }
 
+input:disabled {
+    background-color: #7f7f7f;
+    color: #393939 !important;
+    border: 1px solid #CCC;
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+
 body {
     min-height: 100%;
     background-color: #4B0082;
