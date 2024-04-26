@@ -42,8 +42,9 @@ function adicionaDadosAluno(){
         return "";
     }
     //Verifica se o RA está com o tamanho correto
-    if(ra.value.legth != 9){
+    if(ra.value.length != 9){
         alert("Insira o RA completo (9 Números)");
+        return ""; 
     }
 
     //cria estrutura de dados com os dados do aluno
@@ -76,7 +77,7 @@ function adicionarEventListenerInputsProvas(input, isRA = false) {
             inp.value = "";
         }
 
-        if(!IsRA){
+        if(!isRA){
             //verifica se o tamanho do número n ultrapassa 4 caracteres contando com o ponto
             if(inp.value.length > 4){
                 inp.value = inp.value.substring(0, 4);
