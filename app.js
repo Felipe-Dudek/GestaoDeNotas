@@ -1,6 +1,4 @@
 function adicionaDadosAluno(){
-    let erros = []
-
     //dados pessoais
     const nome = document.getElementById("input_nome");
     const email = document.getElementById("input_email");
@@ -47,15 +45,21 @@ function adicionaDadosAluno(){
         return ""; 
     }
 
-    const tamanhoTable = recuperaDados();
+    const idURL = pegaValorURL();
 
-    let id = tamanhoTable.length++;
+    if(parseFloat(idURL.id) == -1){
+        const tamanhoTable = recuperaDados();
 
-    //cria estrutura de dados com os dados do aluno
-    const dadosAluno = criaEstruturaDeDados(id, nome.value, email.value, ra.value, prova1.value, aep1.value, integrada1.value, prova2.value, aep2.value, integrada2.value);
+        let id = tamanhoTable.length++;
 
-    //armazena os dados no local storage
-    adicionaAlunoLocalStorage(dadosAluno);
+        //cria estrutura de dados com os dados do aluno
+        const dadosAluno = criaEstruturaDeDados(id, nome.value, email.value, ra.value, prova1.value, aep1.value, integrada1.value, prova2.value, aep2.value, integrada2.value);
+
+        //armazena os dados no local storage
+        adicionaAlunoLocalStorage(dadosAluno);
+    } else{
+
+    }
 }
 
 function criaEstruturaDeDados(id, nome, email, ra, prova1, aep1, integrada1, prova2, aep2, integrada2){
@@ -95,11 +99,45 @@ function recuperaDados(){
 function desabilitarInputsSegundoBimestre(){
     
     const id = pegaValorURL();
-    if(parseFloat(id.id) == 0){
+    if(parseFloat(id.id) == -1){
         document.getElementById("input_prova_2").disabled = true;
         document.getElementById("input_aep_2").disabled = true;
         document.getElementById("input_prova_integrada_2").disabled = true;
+    } else{
+        preencheInputsComValoresDoLocalStorage(parseFloat(id.id));
     }
+}
+
+function preencheInputsComValoresDoLocalStorage(id){
+    const dados = recuperaDadosAluno();
+
+    dados.forEach(function (dado) {
+        if(dado.id == id){
+            //dados pessoais
+            document.getElementById("input_nome").value = dado.nome;
+            document.getElementById("input_email").value = dado.email;
+            document.getElementById("input_ra").value = dado.ra;
+
+            //dados primeira prova
+            document.getElementById("input_prova_1").value = dado.prova1
+            document.getElementById("input_aep_1").value = dado.aep1
+            document.getElementById("input_prova_integrada_1").value = dado.integrada1
+
+            //dados segunda prova
+            document.getElementById("input_prova_2").value = dado.prova2
+            document.getElementById("input_aep_2").value = dado.aep2
+            document.getElementById("input_prova_integrada_2").value = dado.integrada2
+        }
+    });
+}
+
+function recuperaDadosAluno(){
+    const localStorage = window.localStorage;
+    let listaAluno = [];
+    if (localStorage.getItem('lista_alunos') != null) {
+        listaAluno = JSON.parse(localStorage.getItem('lista_alunos'));
+    }
+    return listaAluno;
 }
 
 function pegaValorURL(){
