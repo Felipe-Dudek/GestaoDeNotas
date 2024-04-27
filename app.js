@@ -15,6 +15,17 @@ function adicionaDadosAluno(){
     const integrada2 = document.getElementById("input_prova_integrada_2");
 
     //verifica se os números estão nos intevalos certo, caso contrário, será dado um alert
+
+    if(nome.value.length < 3){
+        alert(`Digite um nome`);
+        return "";
+    }
+
+    if(email.value.length < 7){
+        alert(`Digite um email`);
+        return "";
+    }
+
     if((parseFloat(prova1.value) < 0.0 || parseFloat(prova1.value) > 8.0)){
         alert(`A prova 1 deve estar entre 0.0 e 8.0 pontos. Nota atual: ${prova1.value}`);
         return "";
@@ -64,15 +75,12 @@ function adicionaDadosAluno(){
 
         if (dadosEditar != null) {
             dadosEditar.forEach((dados, index) => {
-                console.log("aqui 1");
                 if (parseInt(dados.id) === parseInt(idURL.id)) {
                     const dadosAluno = criaEstruturaDeDados(parseInt(idURL.id), nome.value, email.value, ra.value, prova1.value, aep1.value, integrada1.value, prova2.value, aep2.value, integrada2.value);
                     dadosEditar[index] = dadosAluno;
-                    console.log("aqui 2");
                 }
             });
             EditarAlunoLocalStorage(dadosEditar);
-            console.log("aqui 3"); 
         }
     }
 
@@ -198,11 +206,18 @@ function adicionarEventListenerInputsProvas(input, isRA = false) {
     });
 }
 
-const meuBotao = document.getElementById('salvar');
+const botaoSalvar = document.getElementById('salvar');
 
-meuBotao.addEventListener('click', function(event) {
+botaoSalvar.addEventListener('click', function(event) {
     event.preventDefault();
     adicionaDadosAluno();
+});
+
+const botaoVoltar = document.getElementById('voltar');
+
+botaoVoltar.addEventListener('click', function(event) {
+    event.preventDefault();
+    redirecionarParaTable();
 });
 
 //adiciona event listener para os inputs das notas e RA
