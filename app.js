@@ -47,7 +47,7 @@ function adicionaDadosAluno(){
 
     const idURL = pegaValorURL();
 
-    if(parseFloat(idURL.id) == -1){
+    if(parseInt(idURL.id) == -1){
         const tamanhoTable = recuperaDados();
 
         let id = tamanhoTable.length++;
@@ -57,9 +57,26 @@ function adicionaDadosAluno(){
 
         //armazena os dados no local storage
         adicionaAlunoLocalStorage(dadosAluno);
-    } else{
+    }else{
+        const localStorage = window.localStorage;
+        let dadosEditar = [];
+        dadosEditar = JSON.parse(localStorage.getItem("lista_alunos"));
 
+        if (dadosEditar != null) {
+            dadosEditar.forEach((dados, index) => {
+                console.log("aqui 1");
+                if (parseInt(dados.id) === parseInt(idURL.id)) {
+                    const dadosAluno = criaEstruturaDeDados(parseInt(idURL.id), nome.value, email.value, ra.value, prova1.value, aep1.value, integrada1.value, prova2.value, aep2.value, integrada2.value);
+                    dadosEditar[index] = dadosAluno;
+                    console.log("aqui 2");
+                }
+            });
+            EditarAlunoLocalStorage(dadosEditar);
+            console.log("aqui 3"); 
+        }
     }
+
+    redirecionarParaTable();
 }
 
 function criaEstruturaDeDados(id, nome, email, ra, prova1, aep1, integrada1, prova2, aep2, integrada2){
@@ -85,6 +102,11 @@ function adicionaAlunoLocalStorage(Aluno) {
     }
     listaAlunos.push(Aluno);
     localStorage.setItem('lista_alunos', JSON.stringify(listaAlunos));
+}
+
+function EditarAlunoLocalStorage(Aluno) {
+    const localStorage = window.localStorage;
+    localStorage.setItem('lista_alunos', JSON.stringify(Aluno));
 }
 
 function recuperaDados(){
@@ -175,6 +197,13 @@ function adicionarEventListenerInputsProvas(input, isRA = false) {
         }
     });
 }
+
+const meuBotao = document.getElementById('salvar');
+
+meuBotao.addEventListener('click', function(event) {
+    event.preventDefault();
+    adicionaDadosAluno();
+});
 
 //adiciona event listener para os inputs das notas e RA
 adicionarEventListenerInputsProvas("input_prova_1");
