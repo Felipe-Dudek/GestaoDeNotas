@@ -15,7 +15,10 @@ function populaDadosNaTabela(){
         dados.forEach(dado => {
             const novaLinha = document.createElement('tr');
             const colunaNome = document.createElement('td');
-            colunaNome.innerText = dado.nome;
+            const link = document.createElement('a');
+            link.href = `/index.html?id=${dado.id}`;
+            link.innerText = dado.nome;
+            colunaNome.appendChild(link);
             novaLinha.appendChild(colunaNome);
 
             const colunaRA = document.createElement('td');
@@ -30,52 +33,67 @@ function populaDadosNaTabela(){
             colunaAep1.innerText = dado.aep1;
             novaLinha.appendChild(colunaAep1);
 
-            const colunaIntegrada = document.createElement('td');
-            colunaIntegrada.innerText = dado.integrada1;
-            novaLinha.appendChild(colunaIntegrada);
+            const colunaIntegrada1 = document.createElement('td');
+            colunaIntegrada1.innerText = dado.integrada1;
+            novaLinha.appendChild(colunaIntegrada1);
+
+            const colunaProva2 = document.createElement('td');
+            colunaProva2.innerText = dado.prova2;
+            novaLinha.appendChild(colunaProva2);
+
+            const colunaAep2 = document.createElement('td');
+            colunaAep2.innerText = dado.aep2;
+            novaLinha.appendChild(colunaAep2);
+            
+            const colunaIntegrada2 = document.createElement('td');
+            colunaIntegrada2.innerText = dado.integrada2;
+            novaLinha.appendChild(colunaIntegrada2);
+
+            const colunaMediaBi1 = document.createElement('td');
+            if(isNaN(parseFloat(dado.prova1) + parseFloat(dado.aep1) + parseFloat(dado.integrada1))){
+                colunaMediaBi1.innerText = "Não Lançada";
+            } else{
+                colunaMediaBi1.innerText = parseFloat(dado.prova1) + parseFloat(dado.aep1) + parseFloat(dado.integrada1);
+            }
+            novaLinha.appendChild(colunaMediaBi1);
+
+            const colunaMediaBi2 = document.createElement('td');
+            if(isNaN(parseFloat(dado.prova2) + parseFloat(dado.aep2) + parseFloat(dado.integrada2))){
+                colunaMediaBi2.innerText = "Não Lançada";
+            } else{
+                colunaMediaBi2.innerText = parseFloat(dado.prova2) + parseFloat(dado.aep2) + parseFloat(dado.integrada2);
+            }
+            novaLinha.appendChild(colunaMediaBi2);
+
+            const colunaMediaTotal = document.createElement('td');
+            if(isNaN(parseFloat(colunaMediaBi2.innerText)) || isNaN(parseFloat(colunaMediaBi2.innerText))){
+                colunaMediaTotal.innerText = "Esperando Notas";
+            }else{
+                colunaMediaTotal.innerText = ((parseFloat(dado.prova1) + parseFloat(dado.aep1) + parseFloat(dado.integrada1)) + (parseFloat(dado.prova2) + parseFloat(dado.aep2) + parseFloat(dado.integrada2))) / 2;
+            }
+            novaLinha.appendChild(colunaMediaTotal);
+
+            const colunaAprovado = document.createElement('td');
+            if(isNaN(parseFloat(colunaMediaTotal.innerText))){
+                colunaAprovado.innerText = "Esperando Notas";
+            } else{
+                if(parseFloat(colunaMediaTotal.innerText) >= 6.0){
+                    colunaAprovado.innerText = "Aprovado";
+                } else if(parseFloat(colunaMediaTotal.innerText) < 6.0 || parseFloat(colunaMediaTotal.innerText) >= 3.0){
+                    colunaAprovado.innerText = "Recuperação";
+                } else {
+                    colunaAprovado.innerText = "Reprovado";
+                }
+            }
+            novaLinha.appendChild(colunaAprovado);
 
             idTabela.appendChild(novaLinha);
         });
     }
 }
 
+function redirecionarParaCadastro(){
+    window.location.replace("/index.html?id=-1");
+}
+
 populaDadosNaTabela()
-table.js
-<!DOCTYPE HTML>
-<Html lang="pt-br">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-    <h2> Tabela teste </h2>
-    <div class="table-width">
-        <table Id="tabela-header" class="table table-striped table-dark">
-            <Thead>
-                <tr>
-                    <th scope="col"> Nome</th>
-                    <th scope="col"> RA</th>
-                    <th scope="col"> Prova 1</th>
-                    <th scope="col"> AEP 1</th>
-                    <th scope="col"> Integrada 1</th>
-                    <th scope="col"> Prova 2</th>
-                    <th scope="col"> AEP 2 </th>
-                    <th scope="col"> Integrada 2 </th>
-                    <th scope="col"> Média Bimestre 1</th>
-                    <th scope="col"> Média Bimestre 2</th>
-                    <th scope="col"> Media Total </th>
-                    <th scope="col"> Situação</th>
-                </tr>
-            </Thead>
-            <tbody id="tabela-body-tchola">
-            </tbody>
-        </table>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script src="app.js"></script>
-    <script src="table.js"></script>
-</body>
