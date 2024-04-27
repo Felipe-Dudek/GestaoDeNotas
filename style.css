@@ -22,6 +22,14 @@
     background-color: #6A5ACD;
     border: 0px;
     margin-right: 20px;
+    width: 200px;
+    height: 40px;
+}
+
+.btn-cadastrar{
+    background-color: #6A5ACD;
+    border: 0px;
+    margin-right: 20px;
     width: 100px;
     height: 40px;
 }
@@ -47,6 +55,11 @@
     float: right;
 }
 
+.align-left{
+    float: left;
+    margin-bottom: 10px;
+}
+
 .table-width{
     width: 90%;
     display: flex;
@@ -61,7 +74,7 @@ input:disabled {
     opacity: 0.7;
   }
 
-body {
+.body-index {
     min-height: 100%;
     background-color: #4B0082;
     background-image: linear-gradient(to bottom right, #4B0082, #8A2BE2);
@@ -69,4 +82,14 @@ body {
     padding-bottom: 100px;
     overflow-y: hidden;
     overflow-x: hidden;
+}
+
+.body-main {
+    margin-left: 10%;
+    margin-top: 20px;
+    min-height: 100%;
+    background-color: #4B0082;
+    background-image: linear-gradient(to bottom right, #4B0082, #8A2BE2);
+    color: #FFFFFF;
+    padding-bottom: 100px;
 }
