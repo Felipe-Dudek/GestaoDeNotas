@@ -12,7 +12,7 @@ function populaDadosNaTabela(){
     if(dados != null){
         const idTabela = document.getElementById("tabela-body-tchola");
         idTabela.innerHTML = "";
-        dados.forEach(dado => {
+        dados.forEach(function(dado) {
             const novaLinha = document.createElement('tr');
             const colunaNome = document.createElement('td');
             const link = document.createElement('a');
@@ -87,10 +87,40 @@ function populaDadosNaTabela(){
             }
             novaLinha.appendChild(colunaAprovado);
 
+            const colunaDeletar = document.createElement('td');
+            const deletarButton = document.createElement('i');
+            deletarButton.className = "bi bi-trash3-fill";
+            deletarButton.id = dado.id;
+            deletarButton.onclick = function() {
+                deletarDado(dado.id, dado.nome)
+            };
+            colunaDeletar.appendChild(deletarButton);
+            novaLinha.appendChild(colunaDeletar);
             idTabela.appendChild(novaLinha);
         });
     }
 }
+
+function deletarDado(id, nome){
+    const corfirmar = confirm(`Você tem certeza que deseja deletar o Aluno ${nome} da tabela?`);
+
+    if(corfirmar){
+        const dados = recuperaDados();
+        const dadosFiltrados = dados.filter(dado => parseInt(dado.id) !== parseInt(id));
+        RemoverAlunoLocalStorage(dadosFiltrados);
+    }
+
+    populaDadosNaTabela();
+}
+
+function RemoverAlunoLocalStorage(Aluno) {
+    const localStorage = window.localStorage;
+    Aluno.forEach((dados, index) =>{
+        Aluno[index].id = index;
+    })
+    localStorage.setItem('lista_alunos', JSON.stringify(Aluno));
+}
+
 
 function redirecionarParaCadastro(){
     window.location.replace("/index.html?id=-1");
